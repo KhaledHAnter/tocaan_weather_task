@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 
+import '../../generated/locale_keys.g.dart';
 import 'error_model.dart';
 
 class ApiErrorHandler {
@@ -13,40 +15,40 @@ class ApiErrorHandler {
       switch (error.type) {
         case DioExceptionType.connectionError:
           return ErrorModel(
-            message: 'Connection to server failed',
+            message: LocaleKeys.error_connection_failed.tr(),
             isConnectionError: true,
           );
         case DioExceptionType.cancel:
-          return ErrorModel(message: 'Request to server was cancelled');
+          return ErrorModel(message: LocaleKeys.error_request_cancelled.tr());
         case DioExceptionType.connectionTimeout:
           return ErrorModel(
-            message: 'Connection timeout with server',
+            message: LocaleKeys.error_connection_timeout.tr(),
             isConnectionError: true,
           );
         case DioExceptionType.receiveTimeout:
           return ErrorModel(
-            message: 'Receive timeout in connection with server',
+            message: LocaleKeys.error_receive_timeout.tr(),
             isConnectionError: true,
           );
         case DioExceptionType.sendTimeout:
           return ErrorModel(
-            message: 'Send timeout in connection with server',
+            message: LocaleKeys.error_send_timeout.tr(),
             isConnectionError: true,
           );
         case DioExceptionType.transformTimeout:
-          return ErrorModel(message: 'Timeout transforming server response');
+          return ErrorModel(message: LocaleKeys.error_transform_timeout.tr());
         case DioExceptionType.badCertificate:
-          return ErrorModel(message: 'Invalid server certificate');
+          return ErrorModel(message: LocaleKeys.error_bad_certificate.tr());
         case DioExceptionType.badResponse:
           return _handleError(error.response?.data);
         case DioExceptionType.unknown:
           return ErrorModel(
-            message: 'Connection to server failed due to internet connection',
+            message: LocaleKeys.error_no_internet.tr(),
             isConnectionError: true,
           );
       }
     } else {
-      return ErrorModel(message: 'Unknown error occurred');
+      return ErrorModel(message: LocaleKeys.error_unknown.tr());
     }
   }
 }
@@ -55,7 +57,9 @@ class ApiErrorHandler {
 // `{"error": {"code": 1006, "message": "No matching location found."}}`,
 // which does not match ErrorModel's own {message, code, data} shape. Unwrap
 // the "error" key first so invalid-city and other API errors surface their
-// real message instead of falling through to a generic one.
+// real message instead of falling through to a generic one. Note: that
+// message comes from WeatherAPI itself (always in English) — it is not
+// ours to localize, unlike the fallback below.
 ErrorModel _handleError(dynamic data) {
   if (data is Map<String, dynamic>) {
     final error = data['error'];
@@ -64,5 +68,5 @@ ErrorModel _handleError(dynamic data) {
     }
     return ErrorModel.fromJson(data);
   }
-  return ErrorModel(message: 'Something went wrong');
+  return ErrorModel(message: LocaleKeys.error_something_went_wrong.tr());
 }

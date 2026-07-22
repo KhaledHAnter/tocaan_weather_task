@@ -7,5 +7,17 @@
   "search": "بحث",
   "search_empty_state": "ابحث عن مدينة لرؤية حالة الطقس بها.",
   "use_current_location": "استخدام الموقع الحالي",
-  "showing_cached_data": "أنت غير متصل بالإنترنت - يتم عرض آخر بيانات محفوظة"
+  "showing_cached_data": "أنت غير متصل بالإنترنت - يتم عرض آخر بيانات محفوظة",
+  "switch_to_english": "EN",
+  "switch_to_arabic": "ع",
+  "error_connection_failed": "فشل الاتصال بالخادم",
+  "error_request_cancelled": "تم إلغاء الطلب المرسل إلى الخادم",
+  "error_connection_timeout": "انتهت مهلة الاتصال بالخادم",
+  "error_receive_timeout": "انتهت مهلة استقبال البيانات من الخادم",
+  "error_send_timeout": "انتهت مهلة إرسال البيانات إلى الخادم",
+  "error_transform_timeout": "انتهت مهلة معالجة استجابة الخادم",
+  "error_bad_certificate": "شهادة الخادم غير صالحة",
+  "error_no_internet": "فشل الاتصال بالخادم بسبب انقطاع الإنترنت",
+  "error_something_went_wrong": "حدث خطأ ما",
+  "error_unknown": "حدث خطأ غير معروف"
 }

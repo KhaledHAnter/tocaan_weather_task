@@ -7,5 +7,17 @@
   "search": "Search",
   "search_empty_state": "Search for a city to see its weather.",
   "use_current_location": "Use current location",
-  "showing_cached_data": "You're offline — showing last saved weather"
+  "showing_cached_data": "You're offline — showing last saved weather",
+  "switch_to_english": "EN",
+  "switch_to_arabic": "ع",
+  "error_connection_failed": "Connection to server failed",
+  "error_request_cancelled": "Request to server was cancelled",
+  "error_connection_timeout": "Connection timeout with server",
+  "error_receive_timeout": "Receive timeout in connection with server",
+  "error_send_timeout": "Send timeout in connection with server",
+  "error_transform_timeout": "Timeout transforming server response",
+  "error_bad_certificate": "Invalid server certificate",
+  "error_no_internet": "Connection to server failed due to internet connection",
+  "error_something_went_wrong": "Something went wrong",
+  "error_unknown": "Unknown error occurred"
 }

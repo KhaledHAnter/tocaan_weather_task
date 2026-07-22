@@ -34,7 +34,11 @@ class _ActionsRow extends StatelessWidget {
                   unawaited(context.setLocale(const Locale('ar')));
                 }
               },
-              icon: AppText(title: isAr ? 'EN' : 'ع'),
+              icon: AppText(
+                title: isAr
+                    ? LocaleKeys.switch_to_english.tr()
+                    : LocaleKeys.switch_to_arabic.tr(),
+              ),
             ),
           ),
         ],

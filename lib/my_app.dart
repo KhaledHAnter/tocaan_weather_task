@@ -7,6 +7,7 @@ import 'core/cubits/theme/theme_cubit.dart';
 import 'core/helpers/app_theme.dart';
 import 'core/route_utils/route_utils.dart';
 import 'features/home/presentation/views/home_view.dart';
+import 'generated/locale_keys.g.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
           return BlocBuilder<ThemeCubit, ThemeMode>(
             builder: (context, themeMode) {
               return MaterialApp(
-                title: 'Tocaan Weather',
+                title: LocaleKeys.app_name.tr(),
                 debugShowCheckedModeBanner: false,
                 navigatorKey: RouteUtils.navigatorKey,
                 localizationsDelegates: context.localizationDelegates,

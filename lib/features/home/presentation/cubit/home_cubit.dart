@@ -45,9 +45,12 @@ class HomeCubit extends Cubit<HomeStates> {
     // back to the device's current coordinates. If neither is available
     // (permission denied, GPS off) we deliberately leave the UI in its
     // initial state rather than emitting an error the user can't act on.
-    userLocation = query ?? await LocationUtils.getCurrentCoordinates();
-    if (userLocation == null) return;
     _emit(HomeLoading());
+    userLocation = query ?? await LocationUtils.getCurrentCoordinates();
+    if (userLocation == null) {
+      _emit(HomeInit());
+      return;
+    }
     await getCurrentWeather(query: userLocation!);
   }
 
