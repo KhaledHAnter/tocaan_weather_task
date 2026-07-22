@@ -7,7 +7,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/cubits/theme/theme_cubit.dart';
-import '../../../../core/helpers/app_colors.dart';
 import '../../../../core/helpers/app_theme.dart';
 import '../../../../core/helpers/dimensions.dart';
 import '../../../../core/helpers/utils.dart';

@@ -24,6 +24,7 @@ class _Search extends StatelessWidget {
         const SizedBox(width: 8),
         Expanded(
           child: AppButton(
+            isLoading: cubit.isSearching,
             title: LocaleKeys.search.tr(context: context),
             radius: 16,
             onTap: cubit.search,
