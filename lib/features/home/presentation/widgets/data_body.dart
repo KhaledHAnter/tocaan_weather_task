@@ -29,9 +29,11 @@ class _DataBody extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                WeatherConditionIcon(
-                  kind: weatherIconKindForCode(
-                    weather?.current?.condition?.code,
+                Skeleton.unite(
+                  child: WeatherConditionIcon(
+                    kind: weatherIconKindForCode(
+                      weather?.current?.condition?.code,
+                    ),
                   ),
                 ),
 

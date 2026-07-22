@@ -37,6 +37,10 @@ class ApiErrorHandler {
 
 ErrorModel _handleError(dynamic data) {
   if (data is Map<String, dynamic>) {
+    final error = data['error'];
+    if (error is Map<String, dynamic>) {
+      return ErrorModel.fromJson(error);
+    }
     return ErrorModel.fromJson(data);
   }
   return ErrorModel(message: 'Something went wrong');
