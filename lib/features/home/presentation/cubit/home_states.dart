@@ -6,11 +6,7 @@ class HomeInit extends HomeStates {}
 
 class HomeLoading extends HomeStates {}
 
-class HomeLoaded extends HomeStates {
-  HomeLoaded(this.weather);
-
-  final WeatherResponseModel weather;
-}
+class HomeSearching extends HomeStates {}
 
 class HomeError extends HomeStates {
   HomeError(this.message);

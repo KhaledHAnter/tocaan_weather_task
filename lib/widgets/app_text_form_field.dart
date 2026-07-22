@@ -172,6 +172,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
                   },
                   textInputAction: widget.textInputAction,
                   keyboardType: widget.inputType,
+
                   maxLines: widget.maxLines,
                   minLines: widget.minLines,
                   onSubmitted: widget.onFieldSubmitted,
@@ -198,6 +199,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
                       fontFamily: Utils.isAR ? 'Tajawal' : 'Poppins',
                       fontSize: 14,
                     ),
+
                     suffixIcon: UnconstrainedBox(
                       child: Builder(
                         builder: (context) {

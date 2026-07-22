@@ -7,40 +7,37 @@ class _ActionsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = ThemeCubit.of(context);
     final isAr = Utils.isAR;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Directionality(
-        textDirection: TextDirection.rtl,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _buildActionItem(
-              context,
-              IconButton(
-                onPressed: cubit.toggleTheme,
-                icon: Icon(
-                  Theme.of(context).brightness == Brightness.dark
-                      ? Icons.wb_sunny_outlined
-                      : Icons.nightlight_outlined,
-                  color: context.colors.onSurface,
-                ),
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _buildActionItem(
+            context,
+            IconButton(
+              onPressed: cubit.toggleTheme,
+              icon: Icon(
+                Theme.of(context).brightness == Brightness.dark
+                    ? Icons.wb_sunny_outlined
+                    : Icons.nightlight_outlined,
+                color: context.colors.onSurface,
               ),
             ),
-            _buildActionItem(
-              context,
-              IconButton(
-                onPressed: () {
-                  if (isAr) {
-                    context.locale = const Locale('en');
-                  } else {
-                    context.locale = const Locale('ar');
-                  }
-                },
-                icon: AppText(title: isAr ? 'EN' : 'ع'),
-              ),
+          ),
+          _buildActionItem(
+            context,
+            IconButton(
+              onPressed: () {
+                if (isAr) {
+                  unawaited(context.setLocale(const Locale('en')));
+                } else {
+                  unawaited(context.setLocale(const Locale('ar')));
+                }
+              },
+              icon: AppText(title: isAr ? 'EN' : 'ع'),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

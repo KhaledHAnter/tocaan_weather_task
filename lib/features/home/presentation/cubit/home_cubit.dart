@@ -19,30 +19,52 @@ class HomeCubit extends Cubit<HomeStates> {
   static HomeCubit of(BuildContext context) => BlocProvider.of(context);
 
   final WeatherRepo _weatherRepo;
+
   WeatherResponseModel? weather;
 
-  static const String _fallbackQuery = 'egypt';
+  String? userLocation;
+
+  final TextEditingController searchController = TextEditingController();
 
   void init({String? query}) {
     unawaited(_init(query: query));
   }
 
   Future<void> _init({String? query}) async {
-    final resolvedQuery = query ?? await LocationUtils.getCurrentCoordinates();
-    await getCurrentWeather(query: resolvedQuery ?? _fallbackQuery);
+    userLocation = query ?? await LocationUtils.getCurrentCoordinates();
+    if (userLocation == null) return;
+    _emit(HomeLoading());
+    await getCurrentWeather(query: userLocation!);
   }
 
   Future<void> getCurrentWeather({required String query}) async {
-    emit(HomeLoading());
-
     final result = await _weatherRepo.getCurrentWeather(query: query);
 
     result.when(
       success: (weather) {
         this.weather = weather;
-        emit(HomeLoaded(weather));
+        _emit(HomeInit());
       },
-      error: (apiError) => emit(HomeError(apiError.getAllErrorMessages())),
+      error: (apiError) => _emit(HomeError(apiError.getAllErrorMessages())),
     );
+  }
+
+  void clearSearch() {
+    searchController.clear();
+    _emit(HomeInit());
+  }
+
+  Future<void> search() async {
+    _emit(HomeSearching());
+    await getCurrentWeather(query: searchController.text);
+  }
+
+  bool get isLoading => state is HomeLoading;
+  bool get isSearching => state is HomeSearching;
+
+  void _emit(HomeStates state) {
+    if (!isClosed) {
+      emit(state);
+    }
   }
 }
