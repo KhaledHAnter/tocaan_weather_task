@@ -22,6 +22,12 @@ class ErrorModel {
   };
 
   /// Returns a string with all error messages.
+  ///
+  /// Some APIs return field-level validation errors under `data` (e.g.
+  /// `{"data": {"email": ["is invalid"]}}`) instead of a single top-level
+  /// `message`. When present, those take priority and are flattened into
+  /// one string; otherwise this falls back to `message`, and finally to a
+  /// generic string so the UI never has to render an empty error.
   String getAllErrorMessages() {
     final errors = this.errors;
     if (errors == null || errors.isEmpty) {

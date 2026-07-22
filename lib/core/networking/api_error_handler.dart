@@ -3,8 +3,13 @@ import 'package:dio/dio.dart';
 import 'error_model.dart';
 
 class ApiErrorHandler {
+  /// Converts any thrown error into a single [ErrorModel] so callers never
+  /// need to know whether the failure was a network issue, a timeout, or a
+  /// well-formed error response from the API.
   static ErrorModel handle(dynamic error) {
     if (error is DioException) {
+      // Each DioExceptionType maps to a distinct, user-facing message so
+      // "no internet" and "server took too long" don't look identical.
       switch (error.type) {
         case DioExceptionType.connectionError:
           return ErrorModel(message: 'Connection to server failed');
@@ -35,6 +40,11 @@ class ApiErrorHandler {
   }
 }
 
+// WeatherAPI nests its error payload one level deep, e.g.
+// `{"error": {"code": 1006, "message": "No matching location found."}}`,
+// which does not match ErrorModel's own {message, code, data} shape. Unwrap
+// the "error" key first so invalid-city and other API errors surface their
+// real message instead of falling through to a generic one.
 ErrorModel _handleError(dynamic data) {
   if (data is Map<String, dynamic>) {
     final error = data['error'];

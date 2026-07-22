@@ -5,6 +5,9 @@ import '../../../../core/networking/api_service.dart';
 import '../models/weather_response_model.dart';
 import 'weather_repo.dart';
 
+/// Talks to WeatherAPI's `current.json` endpoint and normalizes both
+/// success and failure into an [ApiResult] so callers (the cubit) never
+/// deal with exceptions directly.
 class WeatherRepoImpl implements WeatherRepo {
   @override
   Future<ApiResult<WeatherResponseModel>> getCurrentWeather({
