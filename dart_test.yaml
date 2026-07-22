@@ -1,0 +1,3 @@
+tags:
+  integration:
+    skip: "Integration tests hit the real API; run explicitly with: flutter test -t integration --dart-define=WEATHER_API_KEY=your_key"

@@ -1,3 +1,12 @@
+// WeatherRepoImpl calls the static ApiService/DioFactory directly with no
+// injection seam, so this test hits the real WeatherAPI endpoint. Tagged as
+// an integration test (see dart_test.yaml) so it's excluded from the
+// default `flutter test` run and doesn't require WEATHER_API_KEY or
+// network access in CI. Run explicitly with:
+//   flutter test -t integration --dart-define=WEATHER_API_KEY=your_key
+@Tags(['integration'])
+library;
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tocaan_weather_task/core/networking/api_result.dart';
 import 'package:tocaan_weather_task/features/home/data/repos/weather_repo_impl.dart';
