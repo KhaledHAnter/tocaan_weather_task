@@ -10,6 +10,7 @@ import '../../../../core/helpers/app_colors.dart';
 import '../../../../core/helpers/app_theme.dart';
 import '../../../../core/helpers/dimensions.dart';
 import '../../../../core/helpers/utils.dart';
+import '../../../../generated/locale_keys.g.dart';
 import '../../../../widgets/app_button.dart';
 import '../../../../widgets/app_text.dart';
 import '../../../../widgets/app_text_form_field.dart';

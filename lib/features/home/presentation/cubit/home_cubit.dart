@@ -16,7 +16,7 @@ class HomeCubit extends Cubit<HomeStates> {
     : _weatherRepo = weatherRepo ?? WeatherRepoImpl(),
       super(HomeInit());
 
-  static HomeCubit of(BuildContext context) => BlocProvider.of(context);
+  static HomeCubit of(BuildContext context) => context.watch<HomeCubit>();
 
   final WeatherRepo _weatherRepo;
 
@@ -55,6 +55,7 @@ class HomeCubit extends Cubit<HomeStates> {
   }
 
   Future<void> search() async {
+    if (searchController.text.trim().isEmpty) return;
     _emit(HomeSearching());
     await getCurrentWeather(query: searchController.text);
   }

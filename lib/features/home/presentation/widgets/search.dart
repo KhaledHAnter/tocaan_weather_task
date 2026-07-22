@@ -8,15 +8,20 @@ class _Search extends StatelessWidget {
     final cubit = HomeCubit.of(context);
     return Row(
       children: [
-        const Expanded(
+        Expanded(
+          flex: 3,
           child: AppTextFormField(
-            hint: 'Search',
+            hint: LocaleKeys.search_hint.tr(context: context),
+            controller: cubit.searchController,
+            onFieldSubmitted: (_) => cubit.search(),
           ),
         ),
+        const SizedBox(width: 8),
         Expanded(
           child: AppButton(
-            title: 'Search',
-            onTap: () => cubit.getCurrentWeather(query: 'egypt'),
+            title: LocaleKeys.search.tr(context: context),
+            radius: 16,
+            onTap: cubit.search,
           ),
         ),
       ],

@@ -7,11 +7,12 @@ class _DataBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = HomeCubit.of(context);
     final weather = cubit.weather;
+    final isLoading = cubit.isLoading || cubit.isSearching;
     return Column(
       children: [
         Expanded(
           child: Skeletonizer(
-            enabled: cubit.isLoading,
+            enabled: isLoading,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

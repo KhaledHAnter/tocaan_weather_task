@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../core/helpers/app_colors.dart';
+import '../core/helpers/app_theme.dart';
 import '../core/helpers/dimensions.dart';
 import '../core/helpers/utils.dart';
 import 'app_loading_indicator.dart';
@@ -10,8 +11,8 @@ class AppButton extends StatelessWidget {
   const AppButton({
     required this.title,
     super.key,
-    this.color = AppColors.primary,
-    this.titleColor = AppColors.white,
+    this.color,
+    this.titleColor,
     this.onTap,
     this.onTapWhenDisabled,
     this.margin = EdgeInsets.zero,
@@ -59,8 +60,8 @@ class AppButton extends StatelessWidget {
   }
 
   final String title;
-  final Color color;
-  final Color titleColor;
+  final Color? color;
+  final Color? titleColor;
   final VoidCallback? onTap;
   final VoidCallback? onTapWhenDisabled;
   final EdgeInsets margin;
@@ -77,6 +78,8 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(radius);
+    final effectiveColor = color ?? context.colors.onSurface;
+    final effectiveTitleColor = titleColor ?? context.colors.background;
     return Padding(
       padding: margin,
       child: Stack(
@@ -96,14 +99,14 @@ class AppButton extends StatelessWidget {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: borderRadius,
-                color: color,
+                color: effectiveColor,
               ),
               child: isLoading
                   ? AppLoadingIndicator(
                       unconstrained: false,
                       size: 32,
                       padding: EdgeInsets.all(2.radius),
-                      color: titleColor,
+                      color: effectiveTitleColor,
                     )
                   : Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -115,7 +118,7 @@ class AppButton extends StatelessWidget {
                         Flexible(
                           child: AppText(
                             title: title,
-                            color: titleColor,
+                            color: effectiveTitleColor,
                             fontSize: titleFontSize,
                             fontWeight: titleFontWeight ?? FontWeight.w600,
                             textAlign: TextAlign.center,
@@ -169,6 +172,8 @@ class _OutlineAppButton extends AppButton {
 
   @override
   Widget build(BuildContext context) {
+    final effectiveColor = color ?? context.colors.onSurface;
+    final effectiveTitleColor = titleColor ?? context.colors.background;
     return Padding(
       padding: margin,
       child: InkWell(
@@ -188,7 +193,7 @@ class _OutlineAppButton extends AppButton {
             borderRadius: BorderRadius.circular(radius),
             color: fillColor,
             border: Border.all(
-              color: onTap == null ? AppColors.darkGray : color,
+              color: onTap == null ? AppColors.darkGray : effectiveColor,
               width: 1.5,
             ),
           ),
@@ -197,7 +202,7 @@ class _OutlineAppButton extends AppButton {
                   unconstrained: false,
                   size: 32,
                   padding: EdgeInsets.all(2.radius),
-                  color: titleColor,
+                  color: effectiveTitleColor,
                 )
               : Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -210,7 +215,9 @@ class _OutlineAppButton extends AppButton {
                       child: AppText(
                         title: title,
                         textAlign: TextAlign.center,
-                        color: onTap == null ? AppColors.black : titleColor,
+                        color: onTap == null
+                            ? AppColors.black
+                            : effectiveTitleColor,
                         fontSize: titleFontSize,
                         fontWeight: titleFontWeight ?? FontWeight.w600,
                       ),

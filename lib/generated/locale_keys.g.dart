@@ -2,9 +2,12 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const app_name = 'app_name';
   static const weather = 'weather';
   static const weather_app_coming_soon = 'weather_app_coming_soon';
   static const powered_by_tocaan = 'powered_by_tocaan';
+  static const search_hint = 'search_hint';
+  static const search = 'search';
+
 }

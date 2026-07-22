@@ -2,5 +2,7 @@
   "app_name": "توكان الطقس",
   "weather": "الطقس",
   "weather_app_coming_soon": "تطبيق الطقس قريباً",
-  "powered_by_tocaan": "بدعم من توكان"
+  "powered_by_tocaan": "بدعم من توكان",
+  "search_hint": "ابحث عن مدينة",
+  "search": "بحث"
 }
