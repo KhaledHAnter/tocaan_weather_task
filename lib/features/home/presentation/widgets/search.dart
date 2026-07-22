@@ -14,6 +14,11 @@ class _Search extends StatelessWidget {
             hint: LocaleKeys.search_hint.tr(context: context),
             controller: cubit.searchController,
             onFieldSubmitted: (_) => cubit.search(),
+            onChanged: (v) {
+              if (v.isEmpty) {
+                unawaited(cubit.resetSearch());
+              }
+            },
           ),
         ),
         const SizedBox(width: 8),

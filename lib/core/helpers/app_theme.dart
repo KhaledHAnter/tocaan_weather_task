@@ -10,6 +10,8 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
     required this.onSurface,
     required this.muted,
     required this.border,
+    required this.skeletonBase,
+    required this.skeletonHighlight,
   });
 
   final Color background;
@@ -17,6 +19,8 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
   final Color onSurface;
   final Color muted;
   final Color border;
+  final Color skeletonBase;
+  final Color skeletonHighlight;
 
   static const light = AppThemeColors(
     background: AppColors.lightBg,
@@ -24,6 +28,8 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
     onSurface: AppColors.lightOnSurface,
     muted: AppColors.lightMuted,
     border: AppColors.lightBorder,
+    skeletonBase: AppColors.lightSkeletonBase,
+    skeletonHighlight: AppColors.lightSkeletonHighlight,
   );
 
   static const dark = AppThemeColors(
@@ -32,6 +38,8 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
     onSurface: AppColors.darkOnSurface,
     muted: AppColors.darkMuted,
     border: AppColors.darkBorder,
+    skeletonBase: AppColors.darkSkeletonBase,
+    skeletonHighlight: AppColors.darkSkeletonHighlight,
   );
 
   @override
@@ -41,6 +49,8 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
     Color? onSurface,
     Color? muted,
     Color? border,
+    Color? skeletonBase,
+    Color? skeletonHighlight,
   }) {
     return AppThemeColors(
       background: background ?? this.background,
@@ -48,6 +58,8 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
       onSurface: onSurface ?? this.onSurface,
       muted: muted ?? this.muted,
       border: border ?? this.border,
+      skeletonBase: skeletonBase ?? this.skeletonBase,
+      skeletonHighlight: skeletonHighlight ?? this.skeletonHighlight,
     );
   }
 
@@ -61,6 +73,12 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
       onSurface: Color.lerp(onSurface, other.onSurface, t)!,
       muted: Color.lerp(muted, other.muted, t)!,
       border: Color.lerp(border, other.border, t)!,
+      skeletonBase: Color.lerp(skeletonBase, other.skeletonBase, t)!,
+      skeletonHighlight: Color.lerp(
+        skeletonHighlight,
+        other.skeletonHighlight,
+        t,
+      )!,
     );
   }
 }

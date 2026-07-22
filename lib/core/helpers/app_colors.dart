@@ -42,6 +42,8 @@ class AppColors {
   static const Color lightOnSurface = Color(0xFF17181C);
   static const Color lightMuted = Color(0xFF71757E);
   static const Color lightBorder = Color(0x17000000);
+  static const Color lightSkeletonBase = Color(0xffECEBEB);
+  static const Color lightSkeletonHighlight = Color(0xffF9F9F9);
 
   // Dark theme surfaces
   static const Color darkBg = Color(0xFF0F1115);
@@ -49,4 +51,6 @@ class AppColors {
   static const Color darkOnSurface = Color(0xFFF3F4F6);
   static const Color darkMuted = Color(0xFF9AA0AB);
   static const Color darkBorder = Color(0x1AFFFFFF);
+  static const Color darkSkeletonBase = Color(0xFF23262D);
+  static const Color darkSkeletonHighlight = Color(0xFF2E323B);
 }

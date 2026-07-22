@@ -9,5 +9,6 @@ abstract class  LocaleKeys {
   static const powered_by_tocaan = 'powered_by_tocaan';
   static const search_hint = 'search_hint';
   static const search = 'search';
+  static const search_empty_state = 'search_empty_state';
 
 }

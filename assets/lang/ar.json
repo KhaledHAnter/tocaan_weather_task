@@ -4,5 +4,6 @@
   "weather_app_coming_soon": "تطبيق الطقس قريباً",
   "powered_by_tocaan": "بدعم من توكان",
   "search_hint": "ابحث عن مدينة",
-  "search": "بحث"
+  "search": "بحث",
+  "search_empty_state": "ابحث عن مدينة لرؤية حالة الطقس بها."
 }

@@ -49,6 +49,12 @@ class HomeCubit extends Cubit<HomeStates> {
     );
   }
 
+  Future<void> resetSearch() async {
+    if (userLocation == null) return;
+    _emit(HomeLoading());
+    await getCurrentWeather(query: userLocation!);
+  }
+
   void clearSearch() {
     searchController.clear();
     _emit(HomeInit());

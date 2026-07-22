@@ -8,27 +8,42 @@ class _DataBody extends StatelessWidget {
     final cubit = HomeCubit.of(context);
     final weather = cubit.weather;
     final isLoading = cubit.isLoading || cubit.isSearching;
+    if (!isLoading && weather == null) {
+      return Center(
+        child: AppText(
+          title: LocaleKeys.search_empty_state.tr(),
+          fontSize: 16.font,
+          fontWeight: FontWeight.w700,
+        ),
+      );
+    }
     return Column(
       children: [
         Expanded(
           child: Skeletonizer(
             enabled: isLoading,
+            effect: ShimmerEffect(
+              baseColor: context.colors.skeletonBase,
+              highlightColor: context.colors.skeletonHighlight,
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AppText(
                   title: weather?.location?.name ?? '',
-                  fontSize: 24,
+                  fontSize: 28.font,
                   fontWeight: FontWeight.w600,
                 ),
                 AppText(
                   title: '${weather?.current?.tempC?.round() ?? '--'}°C',
-                  fontSize: 48,
+                  fontSize: 54.font,
                   fontWeight: FontWeight.w700,
                 ),
                 AppText(
                   title: weather?.current?.condition?.text ?? '',
                   color: context.colors.muted,
+                  fontSize: 16.font,
+                  fontWeight: FontWeight.w500,
                 ),
               ],
             ),
