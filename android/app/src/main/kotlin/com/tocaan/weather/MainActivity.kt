@@ -1,4 +1,4 @@
-package com.example.tocaan_weather_task
+package com.tocaan.weather
 
 import io.flutter.embedding.android.FlutterActivity
 

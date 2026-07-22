@@ -1,5 +1,5 @@
 name: tocaan_weather_task
-description: "A new Flutter project."
+description: "Tocaan Weather - a Flutter weather application."
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -24,6 +24,27 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter_launcher_icons:
+  image_path: "assets/images/app_icon.png"
+  android: "launcher_icon"
+  min_sdk_android: 21
+  adaptive_icon_background: "#102133"
+  adaptive_icon_foreground: "assets/images/adaptive_icon.png"
+  ios: true
+  remove_alpha_ios: true
+  macos:
+    generate: true
+    image_path: "assets/images/app_icon.png"
+  web:
+    generate: true
+    image_path: "assets/images/app_icon.png"
+    background_color: "#102133"
+    theme_color: "#102133"
+  windows:
+    generate: true
+    image_path: "assets/images/app_icon.png"
 
 flutter:
 

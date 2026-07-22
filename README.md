@@ -1,6 +1,6 @@
-# tocaan_weather_task
+# Tocaan Weather
 
-A new Flutter project.
+A Flutter weather application.
 
 ## Getting Started
 
