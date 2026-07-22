@@ -28,6 +28,8 @@ dependencies:
 
   shared_preferences: ^2.5.5
 
+  geolocator: ^14.0.3
+
    # Loading & Skeleton States
   loading_animation_widget: ^1.3.0
   skeletonizer: ^2.1.3

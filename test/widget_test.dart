@@ -18,7 +18,11 @@ void main() {
         child: const MyApp(),
       ),
     );
-    await tester.pumpAndSettle();
+    // Not pumpAndSettle: the initial weather fetch (including location
+    // detection, which never resolves without a platform channel mock in
+    // tests) keeps a loading animation running indefinitely. A single pump
+    // is enough to confirm the static app bar renders.
+    await tester.pump();
 
     expect(find.text('Weather'), findsOneWidget);
   });

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/location_utils/location_utils.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../data/models/weather_response_model.dart';
 import '../../data/repos/weather_repo.dart';
@@ -19,8 +20,15 @@ class HomeCubit extends Cubit<HomeStates> {
 
   final WeatherRepo _weatherRepo;
 
-  void init({required String query}) {
-    unawaited(getCurrentWeather(query: query));
+  static const String _fallbackQuery = 'egypt';
+
+  void init({String? query}) {
+    unawaited(_init(query: query));
+  }
+
+  Future<void> _init({String? query}) async {
+    final resolvedQuery = query ?? await LocationUtils.getCurrentCoordinates();
+    await getCurrentWeather(query: resolvedQuery ?? _fallbackQuery);
   }
 
   Future<void> getCurrentWeather({required String query}) async {
