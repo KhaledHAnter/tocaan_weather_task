@@ -19,6 +19,17 @@ class _DataBody extends StatelessWidget {
     }
     return Column(
       children: [
+        if (cubit.isShowingCachedData)
+          Padding(
+            padding: EdgeInsets.only(bottom: 8.height),
+            child: AppText(
+              title: LocaleKeys.showing_cached_data.tr(),
+              textAlign: TextAlign.center,
+              color: context.colors.muted,
+              fontSize: 12.font,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         Expanded(
           child: Skeletonizer(
             enabled: isLoading,

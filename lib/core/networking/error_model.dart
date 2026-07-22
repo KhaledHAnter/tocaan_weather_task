@@ -3,6 +3,7 @@ class ErrorModel {
     this.message,
     this.code,
     this.errors,
+    this.isConnectionError = false,
   });
 
   factory ErrorModel.fromJson(Map<String, dynamic> json) => ErrorModel(
@@ -14,6 +15,12 @@ class ErrorModel {
   final String? message;
   final int? code;
   final Map<String, dynamic>? errors;
+
+  /// True when this error came from a network/connectivity failure (no
+  /// internet, timeout, DNS, etc.) rather than a well-formed error response
+  /// from the API (e.g. an invalid city name). Callers use this to decide
+  /// whether falling back to cached data makes sense.
+  final bool isConnectionError;
 
   Map<String, dynamic> toJson() => {
     'message': message,

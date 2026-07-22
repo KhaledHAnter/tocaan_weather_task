@@ -6,5 +6,6 @@
   "search_hint": "ابحث عن مدينة",
   "search": "بحث",
   "search_empty_state": "ابحث عن مدينة لرؤية حالة الطقس بها.",
-  "use_current_location": "استخدام الموقع الحالي"
+  "use_current_location": "استخدام الموقع الحالي",
+  "showing_cached_data": "أنت غير متصل بالإنترنت - يتم عرض آخر بيانات محفوظة"
 }

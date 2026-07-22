@@ -12,17 +12,27 @@ class ApiErrorHandler {
       // "no internet" and "server took too long" don't look identical.
       switch (error.type) {
         case DioExceptionType.connectionError:
-          return ErrorModel(message: 'Connection to server failed');
+          return ErrorModel(
+            message: 'Connection to server failed',
+            isConnectionError: true,
+          );
         case DioExceptionType.cancel:
           return ErrorModel(message: 'Request to server was cancelled');
         case DioExceptionType.connectionTimeout:
-          return ErrorModel(message: 'Connection timeout with server');
+          return ErrorModel(
+            message: 'Connection timeout with server',
+            isConnectionError: true,
+          );
         case DioExceptionType.receiveTimeout:
           return ErrorModel(
             message: 'Receive timeout in connection with server',
+            isConnectionError: true,
           );
         case DioExceptionType.sendTimeout:
-          return ErrorModel(message: 'Send timeout in connection with server');
+          return ErrorModel(
+            message: 'Send timeout in connection with server',
+            isConnectionError: true,
+          );
         case DioExceptionType.transformTimeout:
           return ErrorModel(message: 'Timeout transforming server response');
         case DioExceptionType.badCertificate:
@@ -32,6 +42,7 @@ class ApiErrorHandler {
         case DioExceptionType.unknown:
           return ErrorModel(
             message: 'Connection to server failed due to internet connection',
+            isConnectionError: true,
           );
       }
     } else {

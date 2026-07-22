@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/helpers/shared_pref_helper.dart';
 import '../../../../core/location_utils/location_utils.dart';
 import '../../../../core/networking/api_result.dart';
 import '../../data/models/weather_response_model.dart';
@@ -21,6 +23,11 @@ class HomeCubit extends Cubit<HomeStates> {
   final WeatherRepo _weatherRepo;
 
   WeatherResponseModel? weather;
+
+  // True when `weather` is the last cached response rather than a fresh
+  // fetch (the last request failed due to connectivity and a cache existed
+  // to fall back on). Cleared as soon as a fresh fetch succeeds.
+  bool isShowingCachedData = false;
 
   String? userLocation;
 
@@ -47,16 +54,47 @@ class HomeCubit extends Cubit<HomeStates> {
   Future<void> getCurrentWeather({required String query}) async {
     final result = await _weatherRepo.getCurrentWeather(query: query);
 
-    result.when(
-      success: (weather) {
+    await result.when(
+      success: (weather) async {
         this.weather = weather;
+        isShowingCachedData = false;
         // Re-using HomeInit as the "has data" state (rather than a
         // dedicated HomeLoaded) keeps HomeView's switch simple: the view
         // only needs to branch on HomeError, and renders weather/empty
         // state based on whether `weather` is null.
         _emit(HomeInit());
+        unawaited(
+          SharedPrefHelper.setString(
+            SharedPrefHelper.cachedWeatherKey,
+            jsonEncode(weather.toJson()),
+          ),
+        );
       },
-      error: (apiError) => _emit(HomeError(apiError.getAllErrorMessages())),
+      error: (apiError) async {
+        // Only fall back to a stale cache for connectivity failures (no
+        // internet, timeout) — an invalid city name is a real answer from
+        // the API and showing old data for it would be misleading.
+        if (apiError.isConnectionError) {
+          final cached = await _loadCachedWeather();
+          if (cached != null) {
+            weather = cached;
+            isShowingCachedData = true;
+            _emit(HomeInit());
+            return;
+          }
+        }
+        _emit(HomeError(apiError.getAllErrorMessages()));
+      },
+    );
+  }
+
+  Future<WeatherResponseModel?> _loadCachedWeather() async {
+    final raw = await SharedPrefHelper.getString(
+      SharedPrefHelper.cachedWeatherKey,
+    );
+    if (raw == null) return null;
+    return WeatherResponseModel.fromJson(
+      jsonDecode(raw) as Map<String, dynamic>,
     );
   }
 

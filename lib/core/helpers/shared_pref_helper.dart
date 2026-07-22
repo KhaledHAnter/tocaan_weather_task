@@ -4,6 +4,7 @@ class SharedPrefHelper {
   SharedPrefHelper._();
 
   static const String themeModeKey = 'theme_mode';
+  static const String cachedWeatherKey = 'cached_weather';
 
   static Future<void> setString(String key, String value) async {
     final prefs = await SharedPreferences.getInstance();
