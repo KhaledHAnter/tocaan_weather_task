@@ -17,6 +17,7 @@ analyzer:
     - "lib/**/*.g.dart"
     - "lib/**/*.gen.dart"
     - "test/**/*.mocks.dart"
+    - "packages/tocaan_lints/**"
 
 linter:
   rules:
