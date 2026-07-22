@@ -113,7 +113,7 @@ StringLanguage _detectLanguage(String text) {
   final cleaned = text.trim();
   if (cleaned.isEmpty) return StringLanguage.empty;
 
-  final arabicRegex = RegExp(r'[؀-ۿ]');
+  final arabicRegex = RegExp('[؀-ۿ]');
   final englishRegex = RegExp('[a-zA-Z]');
 
   final hasArabic = arabicRegex.hasMatch(cleaned);

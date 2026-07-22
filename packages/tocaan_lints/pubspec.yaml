@@ -1,0 +1,11 @@
+name: tocaan_lints
+description: Custom architecture lint rules enforcing import layering between core, widgets, and features.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.12.1
+
+dependencies:
+  analyzer: ^8.4.0
+  custom_lint_builder: ^0.8.1
