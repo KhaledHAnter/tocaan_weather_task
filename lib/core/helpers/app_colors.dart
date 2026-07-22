@@ -35,4 +35,18 @@ class AppColors {
   static const Color textFieldBorderColor = Color(0xffECEBEB);
 
   static const Color border = Color(0xffD8D7D7);
+
+  // Light theme surfaces
+  static const Color lightBg = Color(0xFFF4F4F2);
+  static const Color lightSurface = Color(0xFFFFFFFF);
+  static const Color lightOnSurface = Color(0xFF17181C);
+  static const Color lightMuted = Color(0xFF71757E);
+  static const Color lightBorder = Color(0x17000000);
+
+  // Dark theme surfaces
+  static const Color darkBg = Color(0xFF0F1115);
+  static const Color darkSurface = Color(0xFF181B21);
+  static const Color darkOnSurface = Color(0xFFF3F4F6);
+  static const Color darkMuted = Color(0xFF9AA0AB);
+  static const Color darkBorder = Color(0x1AFFFFFF);
 }

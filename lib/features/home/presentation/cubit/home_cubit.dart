@@ -19,6 +19,7 @@ class HomeCubit extends Cubit<HomeStates> {
   static HomeCubit of(BuildContext context) => BlocProvider.of(context);
 
   final WeatherRepo _weatherRepo;
+  WeatherResponseModel? weather;
 
   static const String _fallbackQuery = 'egypt';
 
@@ -37,7 +38,10 @@ class HomeCubit extends Cubit<HomeStates> {
     final result = await _weatherRepo.getCurrentWeather(query: query);
 
     result.when(
-      success: (weather) => emit(HomeLoaded(weather)),
+      success: (weather) {
+        this.weather = weather;
+        emit(HomeLoaded(weather));
+      },
       error: (apiError) => emit(HomeError(apiError.getAllErrorMessages())),
     );
   }

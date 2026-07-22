@@ -24,7 +24,7 @@ class AppLoadingIndicator extends StatelessWidget {
       padding: padding,
       child: LoadingAnimationWidget.threeArchedCircle(
         color: color,
-        size: size ?? 24.radius,
+        size: size ?? 50.radius,
       ),
     );
     if (!unconstrained) return indicator;

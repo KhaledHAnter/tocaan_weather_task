@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../core/helpers/app_colors.dart';
+import '../core/helpers/app_theme.dart';
 import '../core/helpers/dimensions.dart';
 import '../core/helpers/utils.dart';
 
@@ -19,7 +19,7 @@ class AppText extends StatelessWidget {
   const AppText({
     required this.title,
     super.key,
-    this.color = AppColors.black,
+    this.color,
     this.fontSize,
     this.textAlign,
     this.decoration,
@@ -38,7 +38,7 @@ class AppText extends StatelessWidget {
 
   final String title;
   final FontWeight fontWeight;
-  final Color color;
+  final Color? color;
   final double? fontSize;
   final TextAlign? textAlign;
   final TextDecoration? decoration;
@@ -65,6 +65,7 @@ class AppText extends StatelessWidget {
       explicitHeight: height,
       normalizeHeight: normalizeHeight,
     );
+    final color = this.color ?? context.colors.onSurface;
     final strutStyle = lineHeightMultiplier == null
         ? StrutStyle.disabled
         : StrutStyle(
