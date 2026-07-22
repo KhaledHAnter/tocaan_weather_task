@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../core/helpers/app_colors.dart';
 import '../core/helpers/app_theme.dart';
 import '../core/helpers/utils.dart';
 import 'app_text.dart';
@@ -10,7 +9,6 @@ class AppTextFormField extends StatelessWidget {
     super.key,
     this.hint,
     this.controller,
-    this.inputTextColor,
     this.textInputAction = TextInputAction.search,
     this.onFieldSubmitted,
     this.onChanged,
@@ -18,7 +16,6 @@ class AppTextFormField extends StatelessWidget {
 
   final String? hint;
   final TextEditingController? controller;
-  final Color? inputTextColor;
   final TextInputAction textInputAction;
   final void Function(String v)? onFieldSubmitted;
   final void Function(String v)? onChanged;
@@ -39,7 +36,6 @@ class AppTextFormField extends StatelessWidget {
       onChanged: onChanged,
       onSubmitted: onFieldSubmitted,
       style: TextStyle(
-        color: inputTextColor ?? AppColors.black,
         fontFamily: Utils.isAR
             ? AppFontFamily.arabic.id
             : AppFontFamily.english.id,
