@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/helpers/app_colors.dart';
 import 'core/route_utils/route_utils.dart';
-import 'features/home/home_view.dart';
+import 'features/home/presentation/views/home_view.dart';
 import 'widgets/app_text.dart';
 
 class MyApp extends StatelessWidget {

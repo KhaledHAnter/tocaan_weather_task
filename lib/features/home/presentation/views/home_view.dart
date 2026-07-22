@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/helpers/app_colors.dart';
-import '../../widgets/app_text.dart';
+import '../../../../core/helpers/app_colors.dart';
+import '../../../../widgets/app_text.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
