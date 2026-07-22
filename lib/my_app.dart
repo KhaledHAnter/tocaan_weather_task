@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'core/cubits/general/cubit/general_cubit.dart';
+import 'core/helpers/app_colors.dart';
+import 'core/route_utils/route_utils.dart';
+import 'features/home/home_view.dart';
+import 'widgets/app_text.dart';
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      builder: (context, child) {
+        return MultiBlocProvider(
+          providers: [BlocProvider(create: (_) => GeneralCubit())],
+          child: MaterialApp(
+            title: 'Tocaan Weather',
+            debugShowCheckedModeBanner: false,
+            navigatorKey: RouteUtils.navigatorKey,
+            theme: ThemeData(
+              useMaterial3: false,
+              fontFamily: AppFontFamily.english.id,
+              scaffoldBackgroundColor: AppColors.background,
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              primaryColor: AppColors.primary,
+              colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
+            ),
+            home: child,
+          ),
+        );
+      },
+      child: const HomeView(),
+    );
+  }
+}
