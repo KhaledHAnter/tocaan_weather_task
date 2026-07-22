@@ -10,5 +10,6 @@ abstract class  LocaleKeys {
   static const search_hint = 'search_hint';
   static const search = 'search';
   static const search_empty_state = 'search_empty_state';
+  static const use_current_location = 'use_current_location';
 
 }
