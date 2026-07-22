@@ -29,11 +29,19 @@ class _DataBody extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                WeatherConditionIcon(
+                  kind: weatherIconKindForCode(
+                    weather?.current?.condition?.code,
+                  ),
+                ),
+
+                SizedBox(height: 4.height),
                 AppText(
                   title: weather?.location?.name ?? '',
                   fontSize: 28.font,
                   fontWeight: FontWeight.w600,
                 ),
+
                 AppText(
                   title: '${weather?.current?.tempC?.round() ?? '--'}°C',
                   fontSize: 54.font,

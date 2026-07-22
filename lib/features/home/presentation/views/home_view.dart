@@ -14,6 +14,7 @@ import '../../../../generated/locale_keys.g.dart';
 import '../../../../widgets/app_button.dart';
 import '../../../../widgets/app_text.dart';
 import '../../../../widgets/app_text_form_field.dart';
+import '../../../../widgets/weather_condition_icon.dart';
 import '../cubit/home_cubit.dart';
 
 part '../widgets/actions_row.dart';
