@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
             title: 'Tocaan Weather',
             debugShowCheckedModeBanner: false,
             navigatorKey: RouteUtils.navigatorKey,
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
             theme: ThemeData(
               useMaterial3: false,
               fontFamily: AppFontFamily.english.id,

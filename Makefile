@@ -1,3 +1,7 @@
+.PHONY: l10n
+l10n:
+	dart run easy_localization:generate -S assets/lang -f keys -O lib/generated -o locale_keys.g.dart && make format
+
 .PHONY: app-icons
 app-icons:
 	dart run flutter_launcher_icons

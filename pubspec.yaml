@@ -15,6 +15,8 @@ dependencies:
 
   flutter_bloc: ^9.1.1
 
+  easy_localization: ^3.0.8
+
   flutter_screenutil: ^5.9.3
 
   font_awesome_flutter: ^11.0.0
@@ -23,6 +25,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  shared_preferences: ^2.5.5
   very_good_analysis: ^10.1.0
   custom_lint: ^0.8.1
   tocaan_lints:
@@ -68,6 +71,7 @@ flutter:
   assets:
     - assets/images/
     - assets/fonts/
+    - assets/lang/
 
   fonts:
     - family: Poppins
