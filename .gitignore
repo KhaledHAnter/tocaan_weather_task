@@ -43,3 +43,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Personal notes, not part of the app
+/docs/senior_highlights.tex
+/docs/senior_highlights.pdf
