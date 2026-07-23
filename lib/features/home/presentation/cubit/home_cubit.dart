@@ -104,7 +104,7 @@ class HomeCubit extends Cubit<HomeStates> {
   // Used by the error view's "use current location" action: re-runs the
   // last known-good location query without touching the search field.
   Future<void> resetSearch() async {
-    if (userLocation == null) return;
+    if (userLocation == null && weather != null) return;
     _emit(HomeLoading());
     await getCurrentWeather(query: userLocation!);
   }
