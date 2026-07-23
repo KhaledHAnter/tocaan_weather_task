@@ -40,18 +40,27 @@ jobs:
       - name: Build release APK
         run: flutter build apk --release
 
+      - name: Determine release tag
+        id: release_tag
+        run: |
+          if [ "${{ github.ref_type }}" = "tag" ]; then
+            echo "tag=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag=manual-$(date +%Y%m%d%H%M%S)" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Rename APK with version
         run: |
-          version="${GITHUB_REF_NAME:-manual-$(date +%Y%m%d%H%M%S)}"
           mv build/app/outputs/flutter-apk/app-release.apk \
-             build/app/outputs/flutter-apk/tocaan-weather-${version}.apk
+             build/app/outputs/flutter-apk/tocaan-weather-${{ steps.release_tag.outputs.tag }}.apk
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.release_tag.outputs.tag }}
           files: build/app/outputs/flutter-apk/tocaan-weather-*.apk
           generate_release_notes: true
-          # Only tag pushes create a real, permanent release; manual runs
-          # (no tag) still build and upload the APK as a draft so nothing
-          # gets accidentally published without a version tag.
+          # Only real tag pushes create a permanent release; manual runs
+          # (no tag) create both a synthetic tag and a draft release, so
+          # nothing gets published under a real version number by accident.
           draft: ${{ github.ref_type != 'tag' }}
